@@ -1,0 +1,88 @@
+// Cores de Destaque
+$yellow: #FD9422;
+$red: #E8425B;
+$green: #00D261;
+$purple: #8158E5;
+
+// Escala de Cinza
+$dark-purple: #202024;
+$light-gray: #E1E1E6;
+$dark-grey: #A6A5AF;
+$dark: #121214;
+
+body{
+  background-color: $dark;
+  padding-bottom: 50px;
+}
+
+.navbar{
+  background-color: $dark-purple;
+  .navbar-brand{
+    color: $purple !important;
+    .phone{
+      margin-right: 5px;
+    }
+  }
+}
+
+.contacts_list{
+  margin-top: 40px;
+  .title{
+    font-size: 22px;
+    color: $purple;
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+
+  .creare_contact_btn{
+    background-color: $purple;
+    border-color: $purple;
+    font-weight: 500;
+    // margin-top: 10px;
+  }
+
+  .delete_contact_all_btn{
+    background-color: $red;
+    border-color: $red;
+    font-weight: 500;
+    margin-top: 10px;
+  }
+
+  .card{
+    background-color: $dark-purple;
+    table{
+      tbody > tr:nth-child(1) > td{
+        border-top: 0;
+      }
+      td{
+        border-color: $dark;
+        vertical-align: middle;
+      }
+      color: $light-gray;
+      font-weight: 500;
+      margin-bottom: 5px;
+      .contact-name{
+        font-weight: 600;
+        font-size: 15px;
+      }
+      .contact-info{
+        color: $dark-grey;
+        font-size: 12px;
+      }
+      .check{
+        color: $purple;
+        font-size: 15px;
+      }
+      .delete{
+        color: $purple;
+      }
+    }
+  }
+  
+  .add{
+    float: right;
+    color: $purple;
+    padding-right: 5px;
+    padding-top: 5px;
+  }
+}
