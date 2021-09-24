@@ -86,3 +86,15 @@ body{
     padding-top: 5px;
   }
 }
+
+.modal-dialog{
+  .modal-content{
+    // .modal-header{}
+    .modal-body{
+      .form-control{
+        margin-bottom: 10px;
+      }
+    }
+    // .modal-footer{}
+  }
+}

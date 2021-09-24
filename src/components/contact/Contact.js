@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import List from './list/List';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlus } from '@fortawesome/free-solid-svg-icons'
 import CreateContact from './create_contact/CreateContacts';
 
 class Contact extends Component {
@@ -29,14 +27,11 @@ class Contact extends Component {
     return (
       <Row>
         <Col xs={{ span: 8, offset: 2 }} className="contacts_list">
-          <CreateContact className="add" loadContacts={this.contacts} />
-          {/* <a className="add" href="#">
-            <FontAwesomeIcon icon={faPlus} size="lg" />
-          </a> */}
+          <CreateContact className="add" loadContacts={this.loadContacts} />
           <p name="top" className="title">
             Contacts
           </p>
-          <List contacts={this.state.contacts} />
+          <List loadContacts={this.loadContacts} contacts={this.state.contacts} />
         </Col>
       </Row>
     );

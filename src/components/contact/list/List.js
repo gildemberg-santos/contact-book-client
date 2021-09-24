@@ -7,12 +7,13 @@ import { faTrashAlt, faEdit, faEnvelopeOpenText } from '@fortawesome/free-solid-
 
 class List extends Component {
   async deleteContact(contact) {
+    console.log(contact);
     if (window.confirm(`Tem certeza de que deseja excluir: "${contact.name}"`)) {
-      // criar logica para deletar contatos
       await fetch(`http://localhost:3001/contacts/${contact.id}`, { method: 'DELETE' });
       this.props.loadContacts();
     }
   }
+
   render() {
     return (
       <div>
@@ -24,11 +25,6 @@ class List extends Component {
                   return <tr key={contact.id}>
                     <td className="col-md-10">
                       <p className="contact-name">{contact.name}</p>
-                      {/* <p className="contact-info">
-                        {contact.cpf}<br />
-                        {contact.email}<br />
-                        {contact.dateOfBirth}
-                      </p> */}
                     </td>
                     <td>
                       <a className="check" href="#">
