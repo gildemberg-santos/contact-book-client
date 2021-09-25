@@ -11,12 +11,30 @@ import { faCheckCircle, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 library.add(faCheckCircle, faTrashAlt)
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      contacts: []
+    };
+    this.loadContacts = this.loadContacts.bind(this);
+  }
+
+  async loadContacts(q = '') {
+    let response = await fetch(`${process.env.REACT_APP_LINK_API}/contacts?contact[q]=${q}`);
+    const statusCode = response.status;
+    const contacts = await response.json();
+    this.setState({ contacts: contacts });
+  }
+
+  componentDidMount() {
+    this.loadContacts();
+  }
   render() {
     return (
       <div>
-        <Header />
+        <Header loadContacts={this.loadContacts} />
         <Container>
-          <Contact />
+          <Contact loadContacts={this.loadContacts} contacts={this.state.contacts} />
         </Container>
       </div>
     );

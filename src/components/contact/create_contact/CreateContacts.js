@@ -3,6 +3,8 @@ import Model from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPlusCircle } from '@fortawesome/free-solid-svg-icons';
 
 function CreateContact(props) {
   const [name, setName] = useState('');
@@ -12,8 +14,7 @@ function CreateContact(props) {
   const [show, setShow] = useState('');
 
   const handleSubmit = (async () => {
-    // console.log(handleSubmit)
-    await fetch('http://localhost:3001/contacts',
+    await fetch(`${process.env.REACT_APP_LINK_API}/contacts`,
       {
         method: 'POST',
         headers: {
@@ -23,8 +24,7 @@ function CreateContact(props) {
         body: JSON.stringify({
           contact: { name: name, cpf: cpf, email: email, dateOfBirth: dateOfBirth, admin_id: 1 }
         })
-      }
-    )
+      })
     setShow(false)
     setName('')
     setCpf('')
@@ -35,7 +35,10 @@ function CreateContact(props) {
 
   return (
     <div>
-      <Button onClick={e => setShow(true)} variant="dark" className="float-right creare_contact_btn">+ Contact</Button>
+      {/* <Button onClick={e => setShow(true)} variant="dark" className="btn-outline-success creare_contact_btn">+ Contact</Button> */}
+      <a className="check" href="#">
+        <FontAwesomeIcon onClick={e => setShow(true)} icon={faPlusCircle} size="lg" />
+      </a>
 
       <Model show={show || false} onHide={e => setShow(false)}>
         <Modal.Header closeButton>

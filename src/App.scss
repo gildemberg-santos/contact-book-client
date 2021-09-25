@@ -12,6 +12,7 @@ $dark: #121214;
 
 body{
   background-color: $dark;
+  // background-color: $light-gray;
   padding-bottom: 50px;
 }
 
@@ -23,6 +24,16 @@ body{
       margin-right: 5px;
     }
   }
+  .check{
+    color: $purple;
+  }
+}
+
+.creare_contact_btn{
+  background-color: $purple;
+  border-color: $purple;
+  font-weight: 500;
+  color: $light-gray;
 }
 
 .contacts_list{
@@ -32,13 +43,6 @@ body{
     color: $purple;
     font-weight: 600;
     margin-bottom: 10px;
-  }
-
-  .creare_contact_btn{
-    background-color: $purple;
-    border-color: $purple;
-    font-weight: 500;
-    // margin-top: 10px;
   }
 
   .delete_contact_all_btn{
@@ -65,36 +69,40 @@ body{
         font-weight: 600;
         font-size: 15px;
       }
-      .contact-info{
-        color: $dark-grey;
-        font-size: 12px;
-      }
       .check{
         color: $purple;
-        font-size: 15px;
       }
       .delete{
         color: $purple;
       }
     }
   }
-  
-  .add{
-    float: right;
-    color: $purple;
-    padding-right: 5px;
-    padding-top: 5px;
-  }
 }
 
 .modal-dialog{
   .modal-content{
-    // .modal-header{}
+    background-color: $dark-purple;
+    .modal-header{
+      background-color: $dark;
+      border-color: $dark;
+      color: $dark-grey;
+    }
     .modal-body{
       .form-control{
         margin-bottom: 10px;
+        background-color: $dark-purple;
+        border-color: $dark;
+        color: $light-gray;
       }
     }
-    // .modal-footer{}
+    .modal-footer{
+      border-color: $dark;
+      .btn{
+        background-color: $purple;
+      }
+      .btn-secondary{
+        background-color: $dark-grey;
+      }
+    }
   }
 }
