@@ -1,46 +1,71 @@
 // Cores de Destaque
-$yellow: #FD9422;
+$yellow: #fd7e14;
 $red: #E8425B;
 $green: #00D261;
 $purple: #8158E5;
-
-// Escala de Cinza
-$dark-purple: #202024;
-$light-gray: #E1E1E6;
 $dark-grey: #A6A5AF;
-$dark: #121214;
+$blue: #007bff;
+
+$accent: $yellow;
+$primary: #E1E1E6;
+$secondary: #121214;
+$background: #202024;
+$header: #121214;
+
 
 body{
-  background-color: $dark;
-  // background-color: $light-gray;
-  padding-bottom: 50px;
+  // position: relative;
+  // height: 100%;
+  background-color: $background;
+  // background-position: bottom left;
+  // background-image: image-set('http://localhost:3000/img/bg4.svg');
+  // background-repeat: no-repeat;
 }
 
+
 .navbar{
-  background-color: $dark-purple;
+  background-color: $header;
   .navbar-brand{
-    color: $purple !important;
+    color: $accent !important;
     .phone{
       margin-right: 5px;
     }
+    .navbar-text{
+      color: $accent !important;
+    }
+  }
+  .input-search, .btn-search{
+    margin-left: 5px;
+  }
+  .btn-search, .btn-login{
+    background-color: $yellow;
+    color: $secondary;
+    border: 0;
+  }
+  .btn-search:hover, .btn-login:hover{
+    background-color: $blue;
+    color: $primary;
+  }
+  .btn-login{
+    margin-left: 20px;
   }
   .check{
-    color: $purple;
+    color: $accent;
   }
 }
 
-.creare_contact_btn{
-  background-color: $purple;
-  border-color: $purple;
+.controller_btn{
+  background-color: $accent;
+  border-color: $accent;
+  color: $secondary;
   font-weight: 500;
-  color: $light-gray;
 }
 
-.contacts_list{
+.list{
   margin-top: 40px;
   .title{
+    color: $accent;
     font-size: 22px;
-    color: $purple;
     font-weight: 600;
     margin-bottom: 10px;
   }
@@ -53,27 +78,34 @@ body{
   }
 
   .card{
-    background-color: $dark-purple;
+    background-color: $header;
     table{
+      tbody, thead > tr:nth-child(1) > td{
+        border-top: 0;
+      }
       tbody > tr:nth-child(1) > td{
         border-top: 0;
       }
       td{
-        border-color: $dark;
+        border-color: $background;
         vertical-align: middle;
       }
-      color: $light-gray;
+      color: $primary;
       font-weight: 500;
       margin-bottom: 5px;
-      .contact-name{
+      .title-list{
         font-weight: 600;
-        font-size: 15px;
+        font-size: 13px;
       }
-      .check{
-        color: $purple;
+      .info-list{
+        font-weight: 400;
+        font-size: 12px;
       }
-      .delete{
-        color: $purple;
+      .btn-icon{
+        color: $accent;
+      }
+      .btn-icon:hover{
+        color:$blue;
       }
     }
   }
@@ -81,28 +113,47 @@ body{
 
 .modal-dialog{
   .modal-content{
-    background-color: $dark-purple;
+    background-color: $background;
     .modal-header{
-      background-color: $dark;
-      border-color: $dark;
-      color: $dark-grey;
+      background-color: $header;
+      border-color: $header;
+      color: $primary;
+      .close{
+        color: $accent;
+      }
     }
     .modal-body{
       .form-control{
         margin-bottom: 10px;
-        background-color: $dark-purple;
-        border-color: $dark;
-        color: $light-gray;
+        background-color: $background;
+        border-color: $background;
+        color: $primary;
       }
     }
     .modal-footer{
-      border-color: $dark;
-      .btn{
-        background-color: $purple;
+      border-color: $background;
+      .btn-cancelar{
+        background-color: $secondary;
+        color: $dark-grey;
+        border: 0;
       }
-      .btn-secondary{
+      .btn-cancelar:hover{
+        background-color: $red;
+        color: $secondary;
+      }
+      .btn-salvar{
         background-color: $dark-grey;
+        color: $secondary;
+        border: 0;
+      }
+      .btn-salvar:hover{
+        background-color: $blue;
+        color: $primary;
       }
     }
   }
+}
+
+.list_address{
+  color: $primary;
 }

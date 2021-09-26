@@ -2,9 +2,8 @@ import React, { Component } from 'react';
 import Container from 'react-bootstrap/Container';
 
 import './App.scss';
-import Contact from './components/contact/Contact'
 import Header from './components/header/Header';
-
+import Contact from './components/contact/Contact'
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faCheckCircle, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 
@@ -20,15 +19,19 @@ class App extends Component {
   }
 
   async loadContacts(q = '') {
-    let response = await fetch(`${process.env.REACT_APP_LINK_API}/contacts?contact[q]=${q}`);
-    const statusCode = response.status;
-    const contacts = await response.json();
-    this.setState({ contacts: contacts });
+    try {
+      let response = await fetch(`${process.env.REACT_APP_LINK_API}/contacts?contact[q]=${q}`);
+      const contacts = await response.json();
+      this.setState({ contacts: contacts });
+    } catch (e) {
+      console.log(e);
+    }
   }
 
   componentDidMount() {
     this.loadContacts();
   }
+
   render() {
     return (
       <div>
