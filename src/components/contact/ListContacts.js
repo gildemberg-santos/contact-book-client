@@ -16,9 +16,25 @@ class ListContact extends Component {
     super(props);
   }
 
-  async deleteContact(contact) {
+  async deleteAddress(contact = null) {
     if (window.confirm(`Tem certeza de que deseja excluir: "${contact.name}"`)) {
+      try {
+        await fetch(`${process.env.REACT_APP_LINK_API}/addresses/0?address[contact_id]=${contact.id}&address[admin_id]=0`, { method: 'DELETE' });
+      } catch (e) {
+        console.log(e);
+      }
+      finally {
+        this.deleteContact(contact);
+      }
+    }
+  }
+
+  async deleteContact(contact) {
+    try {
       await fetch(`${process.env.REACT_APP_LINK_API}/contacts/${contact.id}?contact[admin_id]=0`, { method: 'DELETE' });
+    } catch (e) {
+      console.log(e);
+    } finally {
       this.props.loadContacts();
     }
   }
@@ -56,7 +72,7 @@ class ListContact extends Component {
                         </p>
                       </td>
                       <td>
-                        <Address />
+                        <Address contact={contact} />
                       </td>
                       {/* <td>
                         <ViewContact loadContacts={this.props.loadContacts} contact={contact} />
@@ -65,7 +81,7 @@ class ListContact extends Component {
                         <EditContact loadContacts={this.props.loadContacts} contact={contact} />
                       </td>
                       <td>
-                        <a className="btn-icon" href="#" onClick={() => this.deleteContact(contact)}>
+                        <a className="btn-icon" href="#" onClick={() => this.deleteAddress(contact)}>
                           <FontAwesomeIcon icon={faTrashAlt} size="sm" />
                         </a>
                       </td>
