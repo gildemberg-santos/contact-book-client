@@ -6,6 +6,7 @@ import Button from 'react-bootstrap/Button';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAddressBook } from '@fortawesome/free-solid-svg-icons';
+import Login from '../login/Login';
 
 library.add(faAddressBook)
 
@@ -37,6 +38,7 @@ class Header extends Component {
                 <Form.Control className="input-search" type="text" placeholder="Search" value={this.state.search} onChange={e => this.setState({ search: e.target.value })} />
                 <Button className="btn-search" onClick={() => this.searchContact()}>Search</Button>
                 <Button className="btn-login">Login</Button>
+                <Login></Login>
               </Form.Group>
             </Form>
           </Navbar.Text>

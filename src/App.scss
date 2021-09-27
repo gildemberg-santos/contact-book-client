@@ -13,11 +13,14 @@ $background: #202024;
 $header: #121214;
 
 
-body{
+.image-bg{  
+  position: fixed; 
+  width: 100%; 
+  height: 100%; 
   background-color: $background;
-  background-position: bottom left;
   background-image: image-set('http://localhost:3000/img/bg4.svg');
   background-repeat: no-repeat;
+  background-position: bottom left;
 }
 
 

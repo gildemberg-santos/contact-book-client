@@ -3,7 +3,7 @@ import Container from 'react-bootstrap/Container';
 
 import './App.scss';
 import Header from './components/header/Header';
-import Contact from './components/contact/Contact'
+import Contact from './components/body/Contact'
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faCheckCircle, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 

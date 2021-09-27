@@ -50,8 +50,8 @@ class Address extends Component {
     render() {
         return (
             <div>
-                <a className="btn-icon" href="#">
-                    <FontAwesomeIcon onClick={e => this.setState({ show: true })} icon={faGlobeAmericas} size="sm" />
+                <a onClick={e => this.setState({ show: true })} className="btn-icon" href="#">
+                    <FontAwesomeIcon icon={faGlobeAmericas} size="sm" />
                 </a>
 
 
