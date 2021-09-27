@@ -6,7 +6,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashAlt, faGlobeAmericas } from '@fortawesome/free-solid-svg-icons';
 import CreateContact from './CreateContacts';
 import EditContact from './EditContacts';
-import ViewContact from './ViewContacts';
 import Address from './Address';
 
 library.add(faTrashAlt)
@@ -74,9 +73,6 @@ class ListContact extends Component {
                       <td>
                         <Address contact={contact} />
                       </td>
-                      {/* <td>
-                        <ViewContact loadContacts={this.props.loadContacts} contact={contact} />
-                      </td> */}
                       <td>
                         <EditContact loadContacts={this.props.loadContacts} contact={contact} />
                       </td>

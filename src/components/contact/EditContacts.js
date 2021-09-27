@@ -54,9 +54,6 @@ function EditContact(props) {
             </Button>
           </Form>
         </Modal.Footer>
-        <Modal.Body>
-          {/* <Address contact={props.contact} /> */}
-        </Modal.Body>
       </Modal>
     </div>
   )

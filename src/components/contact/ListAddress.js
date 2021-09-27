@@ -12,12 +12,17 @@ import { library } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGlobeAmericas, faPlusCircle, faEdit, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 
+import EditAddress from './EditAddress';
+import DeleteAddress from './DeleteAddress';
+
 library.add(faGlobeAmericas)
 
 class ListAddress extends Component {
   constructor(props) {
     super(props);
   }
+
+
   render() {
     return (
       <tbody>
@@ -29,14 +34,10 @@ class ListAddress extends Component {
                   <p className="info-list">{address.road}, {address.number}, {address.district}, {address.city} - {address.states}, {address.cep}</p>
                 </td>
                 <td>
-                  <a className="btn-icon" href="#">
-                    <FontAwesomeIcon icon={faEdit} size="sm" />
-                  </a>
+                  <EditAddress loadAddresses={this.props.loadAddresses} address={address} contact={this.props.contact} />
                 </td>
                 <td>
-                  <a className="btn-icon" href="#">
-                    <FontAwesomeIcon icon={faTrashAlt} size="sm" />
-                  </a>
+                  <DeleteAddress loadAddresses={this.props.loadAddresses} address={address} contact={this.props.contact} />
                 </td>
               </tr>
             );

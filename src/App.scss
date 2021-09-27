@@ -14,8 +14,6 @@ $header: #121214;
 
 
 body{
-  // position: relative;
-  // height: 100%;
   background-color: $background;
   background-position: bottom left;
   background-image: image-set('http://localhost:3000/img/bg4.svg');
@@ -23,6 +21,7 @@ body{
 }
 
 
+// Barra de Header
 .navbar{
   background-color: $header;
   .navbar-brand{
@@ -54,13 +53,10 @@ body{
   }
 }
 
-.controller_btn{
-  background-color: $accent;
-  border-color: $accent;
-  color: $secondary;
-  font-weight: 500;
-}
+// Botões 
 
+
+// Listagem dos Itens
 .list{
   margin-top: 40px;
   .title{
@@ -69,14 +65,13 @@ body{
     font-weight: 600;
     margin-bottom: 10px;
   }
-
+  // Acho que não esta sendo usado
   .delete_contact_all_btn{
     background-color: $red;
     border-color: $red;
     font-weight: 500;
     margin-top: 10px;
   }
-
   .card{
     background-color: $header;
     table{
@@ -97,9 +92,12 @@ body{
         font-weight: 600;
         font-size: 13px;
       }
+      .list_address{
+        color: $primary;
+      }
       .info-list{
-        font-weight: 400;
-        font-size: 12px;
+        font-weight: 300;
+        font-size: 13px;
       }
       .btn-icon{
         color: $accent;
@@ -111,7 +109,15 @@ body{
   }
 }
 
+
+// Caixas de dialog
+.modal-backdrop.show{
+  opacity: 0.8;
+}
 .modal-dialog{
+  border-color: #414141;
+  border-radius: 1px;
+  border-style: dashed;
   .modal-content{
     background-color: $background;
     .modal-header{
@@ -123,11 +129,18 @@ body{
       }
     }
     .modal-body{
+      background-color: $background;
       .form-control{
         margin-bottom: 10px;
         background-color: $background;
-        border-color: $background;
+        border-color: #414141;
         color: $primary;
+      }
+      .controller_btn{
+        background-color: $accent;
+        border-color: $accent;
+        color: $secondary;
+        font-weight: 500;
       }
     }
     .modal-footer{
@@ -154,6 +167,54 @@ body{
   }
 }
 
-.list_address{
-  color: $primary;
+
+// autosuggest
+.react-autosuggest__container {
+  position: relative;
+}
+
+.react-autosuggest__input {
+  width: 240px;
+  height: 30px;
+  padding: 10px 20px;
+  font-family: Helvetica, sans-serif;
+  font-weight: 300;
+  font-size: 16px;
+  border: 1px solid #aaa;
+  border-radius: 4px;
+}
+
+.react-autosuggest__input:focus {
+  outline: none;
+}
+
+.react-autosuggest__container--open .react-autosuggest__input {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.react-autosuggest__suggestions-container {
+  position: absolute;
+  top: 51px;
+  width: 280px;
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  border: 1px solid #aaa;
+  background-color: #fff;
+  font-family: Helvetica, sans-serif;
+  font-weight: 300;
+  font-size: 16px;
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+  z-index: 2;
+}
+
+.react-autosuggest__suggestion {
+  cursor: pointer;
+  padding: 10px 20px;
+}
+
+.react-autosuggest__suggestion--focused {
+  background-color: #ddd;
 }

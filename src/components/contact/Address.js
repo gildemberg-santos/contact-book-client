@@ -21,12 +21,16 @@ class Address extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            show: ''
+            show: false
         };
         this.state = {
             addresses: []
         };
         this.loadAddresses = this.loadAddresses.bind(this);
+    }
+
+    async statelist(valor = false) {
+        this.setState({ show: valor });
     }
 
     async loadAddresses(contact) {
@@ -67,10 +71,7 @@ class Address extends Component {
                                                 <tr>
                                                     <td colSpan="2"></td>
                                                     <td>
-                                                        {/* <a className="btn-icon" href="#">
-                                                            <FontAwesomeIcon icon={faPlusCircle} size="sm" />
-                                                        </a> */}
-                                                        <CreateAddress loadAddresses={this.loadAddresses} contact={this.props.contact} />
+                                                        <CreateAddress statelist={this.statelist} loadAddresses={this.loadAddresses} contact={this.props.contact} onClick={e => this.setState({ show: false })} />
                                                     </td>
                                                 </tr>
                                             </thead>
@@ -87,7 +88,7 @@ class Address extends Component {
                         </Button>
                     </Modal.Footer>
                 </Modal>
-            </div>
+            </div >
         );
     }
 }
