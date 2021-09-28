@@ -51,7 +51,7 @@ function CreateAddress(props) {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                    address: { cep: cep, road: road, number: number, district: district, city: city, states: states, contact_id: props.contact.id, admin_id: 1 }
+                    address: { cep: cep, road: road, number: number, district: district, city: city, states: states, contact_id: props.contact.id }
                 })
             });
         if (StatusCode(response.status)) {

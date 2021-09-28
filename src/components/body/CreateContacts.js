@@ -28,7 +28,7 @@ function CreateContact(props) {
             'Content-Type': 'application/json'
           },
           body: JSON.stringify({
-            contact: { name: name, cpf: cpf, email: email, dateOfBirth: dateOfBirth, admin_id: 1 }
+            contact: { name: name, cpf: cpf, email: email, dateOfBirth: dateOfBirth }
           })
         });
       if (StatusCode(response.status)) {

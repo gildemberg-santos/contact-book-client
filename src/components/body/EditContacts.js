@@ -25,7 +25,7 @@ function EditContact(props) {
             'Content-Type': 'application/json'
           },
           body: JSON.stringify({
-            contact: { name: name, cpf: cpf, email: email, dateOfBirth: dateOfBirth, admin_id: props.contact.admin_id }
+            contact: { name: name, cpf: cpf, email: email, dateOfBirth: dateOfBirth }
           })
         });
 

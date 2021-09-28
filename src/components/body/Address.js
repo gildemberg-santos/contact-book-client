@@ -35,7 +35,7 @@ class Address extends Component {
 
     async loadAddresses(contact) {
         try {
-            let response = await fetch(`${process.env.REACT_APP_LINK_API}/addresses?address[contact_id]=${contact.id}&address[admin_id]=${1}`);
+            let response = await fetch(`${process.env.REACT_APP_LINK_API}/addresses?address[contact_id]=${contact.id}`);
             const addresses = await response.json();
             this.setState({ addresses: addresses });
         } catch (e) {

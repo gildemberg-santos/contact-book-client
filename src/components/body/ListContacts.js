@@ -19,7 +19,7 @@ class ListContact extends Component {
   async deleteAddress(contact = null) {
     if (window.confirm(`Tem certeza de que deseja excluir: "${contact.name}"`)) {
       try {
-        await fetch(`${process.env.REACT_APP_LINK_API}/addresses/0?address[contact_id]=${contact.id}&address[admin_id]=0`, { method: 'DELETE' });
+        await fetch(`${process.env.REACT_APP_LINK_API}/addresses/0?address[contact_id]=${contact.id}`, { method: 'DELETE' });
       } catch (e) {
         console.log(e);
       }
@@ -30,7 +30,7 @@ class ListContact extends Component {
   }
 
   async deleteContact(contact) {
-    let response = await fetch(`${process.env.REACT_APP_LINK_API}/contacts/${contact.id}?contact[admin_id]=0`, { method: 'DELETE' });
+    let response = await fetch(`${process.env.REACT_APP_LINK_API}/contacts/${contact.id}`, { method: 'DELETE' });
     if (StatusCode(response.status)) {
       this.props.loadContacts();
     }
