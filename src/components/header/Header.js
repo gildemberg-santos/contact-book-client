@@ -6,7 +6,6 @@ import Button from 'react-bootstrap/Button';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAddressBook } from '@fortawesome/free-solid-svg-icons';
-import Login from '../login/Login';
 
 library.add(faAddressBook)
 
@@ -14,8 +13,15 @@ class Header extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      search: ""
+      search: "",
+      user: ""
     }
+  }
+
+
+  async login() {
+    const user = GetSession();
+    window.alert(user.token);
   }
 
   async searchContact() {
@@ -37,8 +43,6 @@ class Header extends Component {
               <Form.Group>
                 <Form.Control className="input-search" type="text" placeholder="Pesquisar" value={this.state.search} onChange={e => this.setState({ search: e.target.value })} />
                 <Button className="btn-search" onClick={() => this.searchContact()}>Pesquisar</Button>
-                <Button className="btn-login">Login</Button>
-                <Login></Login>
               </Form.Group>
             </Form>
           </Navbar.Text>
