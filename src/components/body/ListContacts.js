@@ -7,6 +7,7 @@ import { faTrashAlt, faGlobeAmericas } from '@fortawesome/free-solid-svg-icons';
 import CreateContact from './CreateContacts';
 import EditContact from './EditContacts';
 import Address from './Address';
+import { StatusCode } from './VerificarStatusCode';
 
 library.add(faTrashAlt)
 
@@ -29,11 +30,8 @@ class ListContact extends Component {
   }
 
   async deleteContact(contact) {
-    try {
-      await fetch(`${process.env.REACT_APP_LINK_API}/contacts/${contact.id}?contact[admin_id]=0`, { method: 'DELETE' });
-    } catch (e) {
-      console.log(e);
-    } finally {
+    let response = await fetch(`${process.env.REACT_APP_LINK_API}/contacts/${contact.id}?contact[admin_id]=0`, { method: 'DELETE' });
+    if (StatusCode(response.status)) {
       this.props.loadContacts();
     }
   }
@@ -48,7 +46,7 @@ class ListContact extends Component {
                 <tr>
                   <td>
                     <p name="top" className="title">
-                      Contacts
+                      Contatos
                     </p>
                   </td>
                   <td></td>

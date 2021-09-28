@@ -58,7 +58,7 @@ class Address extends Component {
                 <Modal show={this.state.show || false} onHide={e => this.setState({ show: false })}>
                     <Modal.Header closeButton>
                         <Modal.Title>
-                            Addresses
+                            Endereços
                         </Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
@@ -84,7 +84,7 @@ class Address extends Component {
                     </Modal.Body>
                     <Modal.Footer>
                         <Button className="btn-cancelar" onClick={e => this.setState({ show: false })}>
-                            Close
+                            Cancelar
                         </Button>
                     </Modal.Footer>
                 </Modal>

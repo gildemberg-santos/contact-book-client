@@ -25,6 +25,7 @@ class App extends Component {
       this.setState({ contacts: contacts });
     } catch (e) {
       console.log(e);
+      this.setState({ contacts: [] });
     }
   }
 

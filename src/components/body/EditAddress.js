@@ -5,6 +5,7 @@ import Form from 'react-bootstrap/Form';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit } from '@fortawesome/free-solid-svg-icons';
+import { StatusCode } from './VerificarStatusCode';
 
 library.add(faEdit)
 
@@ -28,8 +29,7 @@ function EditAddress(props) {
       console.log(e);
     }
     finally {
-      console.log(address['cep'])
-      if (response.status == 200) {
+      if (response != null && response.status == 200) {
         setCep(address['cep']);
         setRoad(address['logradouro']);
         setNumber('');
@@ -37,11 +37,14 @@ function EditAddress(props) {
         setCity(address['localidade']);
         setStates(address['uf']);
       }
+      else {
+        alert(`O cep ${cep} é inválido!`)
+      }
     }
   });
 
   const handleSubmit = (async () => {
-    await fetch(`${process.env.REACT_APP_LINK_API}/addresses/${props.address.id}`,
+    let response = await fetch(`${process.env.REACT_APP_LINK_API}/addresses/${props.address.id}`,
       {
         method: 'PUT',
         headers: {
@@ -52,8 +55,10 @@ function EditAddress(props) {
           address: { cep: cep, road: road, number: number, district: district, city: city, states: states, contact_id: props.contact.id, admin_id: 1 }
         })
       });
-    setShow(false);
-    props.loadAddresses(props.contact);
+    if (StatusCode(response.status)) {
+      setShow(false);
+      props.loadAddresses(props.contact);
+    }
   });
 
   return (
@@ -63,18 +68,18 @@ function EditAddress(props) {
       </a>
       <Modal show={show || false} onHide={e => setShow(false)}>
         <Modal.Header closeButton>
-          <Modal.Title>Edit Addreess</Modal.Title>
+          <Modal.Title>Editar Endereço</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Form.Control type="text" placeholder="Zip code" value={cep || ''} onChange={e => setCep(e.target.value)} />
-          <Form.Control className="controller_btn" value="Search zip code" type="button" onClick={searchZipCode} />
+          <Form.Control type="text" placeholder="Cep" value={cep || ''} onChange={e => setCep(e.target.value)} />
+          <Form.Control className="controller_btn" value="Pesquisar Cep" type="button" onClick={searchZipCode} />
           <br />
-          <Form.Control type="text" placeholder="Road" value={road || ''} onChange={e => setRoad(e.target.value)} />
-          <Form.Control type="text" placeholder="Númber" value={number || ''} onChange={e => setNumber(e.target.value)} />
-          <Form.Control type="text" placeholder="Distrinct" value={district || ''} onChange={e => setDistrict(e.target.value)} />
-          <Form.Control type="text" placeholder="City" value={city || ''} onChange={e => setCity(e.target.value)} />
+          <Form.Control type="text" placeholder="Logradouro" value={road || ''} onChange={e => setRoad(e.target.value)} />
+          <Form.Control type="text" placeholder="Número" value={number || ''} onChange={e => setNumber(e.target.value)} />
+          <Form.Control type="text" placeholder="Bairro" value={district || ''} onChange={e => setDistrict(e.target.value)} />
+          <Form.Control type="text" placeholder="Cidade" value={city || ''} onChange={e => setCity(e.target.value)} />
           <select className="form-control" value={states || ''} onChange={e => setStates(e.target.value)}>
-            <option value=""></option>
+            <option value="">Selecionar o Estado</option>
             <option value="AC">Acre</option>
             <option value="AL">Alagoas</option>
             <option value="AP">Amapá</option>
@@ -107,11 +112,11 @@ function EditAddress(props) {
         </Modal.Body>
         <Modal.Footer>
           <Button className="btn-cancelar" onClick={e => setShow(false)}>
-            Close
+            Cancelar
           </Button>
           <Form onSubmit={handleSubmit}>
             <Button className="btn-salvar" type="submit">
-              Create
+              Salvar
             </Button>
           </Form>
         </Modal.Footer>

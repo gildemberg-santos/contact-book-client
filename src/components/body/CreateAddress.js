@@ -5,6 +5,7 @@ import Form from 'react-bootstrap/Form';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlusCircle } from '@fortawesome/free-solid-svg-icons';
+import { StatusCode } from './VerificarStatusCode';
 
 library.add(faPlusCircle)
 
@@ -27,8 +28,7 @@ function CreateAddress(props) {
             console.log(e);
         }
         finally {
-            console.log(address['cep'])
-            if (response.status == 200) {
+            if (response != null && response.status == 200) {
                 setCep(address['cep']);
                 setRoad(address['logradouro']);
                 setNumber('');
@@ -36,11 +36,14 @@ function CreateAddress(props) {
                 setCity(address['localidade']);
                 setStates(address['uf']);
             }
+            else {
+                alert(`O cep ${cep} é inválido!`)
+            }
         }
     });
 
     const handleSubmit = (async () => {
-        await fetch(`${process.env.REACT_APP_LINK_API}/addresses`,
+        let response = await fetch(`${process.env.REACT_APP_LINK_API}/addresses`,
             {
                 method: 'POST',
                 headers: {
@@ -51,14 +54,16 @@ function CreateAddress(props) {
                     address: { cep: cep, road: road, number: number, district: district, city: city, states: states, contact_id: props.contact.id, admin_id: 1 }
                 })
             });
-        setShow(false);
-        setCep('');
-        setRoad('');
-        setNumber('');
-        setDistrict('');
-        setCity('');
-        setStates('');
-        props.loadAddresses(props.contact);
+        if (StatusCode(response.status)) {
+            setShow(false);
+            setCep('');
+            setRoad('');
+            setNumber('');
+            setDistrict('');
+            setCity('');
+            setStates('');
+            props.loadAddresses(props.contact);
+        }
     });
 
     return (
@@ -68,18 +73,18 @@ function CreateAddress(props) {
             </a>
             <Modal show={show || false} onHide={e => setShow(false)}>
                 <Modal.Header closeButton>
-                    <Modal.Title>New Addreess</Modal.Title>
+                    <Modal.Title>Novo Endereço</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <Form.Control type="text" autoComplete placeholder="Zip code" value={cep || ''} onChange={e => setCep(e.target.value)} />
-                    <Form.Control className="controller_btn" value="Search zip code" type="button" onClick={searchZipCode} />
+                    <Form.Control type="text" autoComplete placeholder="Cep" value={cep || ''} onChange={e => setCep(e.target.value)} />
+                    <Form.Control className="controller_btn" value="Pesquisar CEP" type="button" onClick={searchZipCode} />
                     <br />
-                    <Form.Control type="text" autoComplete placeholder="Road" value={road || ''} onChange={e => setRoad(e.target.value)} />
-                    <Form.Control type="text" autoComplete placeholder="Númber" value={number || ''} onChange={e => setNumber(e.target.value)} />
-                    <Form.Control type="text" autoComplete placeholder="Distrinct" value={district || ''} onChange={e => setDistrict(e.target.value)} />
-                    <Form.Control type="text" autoComplete placeholder="City" value={city || ''} onChange={e => setCity(e.target.value)} />
+                    <Form.Control type="text" autoComplete placeholder="Logradouro" value={road || ''} onChange={e => setRoad(e.target.value)} />
+                    <Form.Control type="text" autoComplete placeholder="Número" value={number || ''} onChange={e => setNumber(e.target.value)} />
+                    <Form.Control type="text" autoComplete placeholder="Bairro" value={district || ''} onChange={e => setDistrict(e.target.value)} />
+                    <Form.Control type="text" autoComplete placeholder="Cidade" value={city || ''} onChange={e => setCity(e.target.value)} />
                     <select className="form-control" value={states || ''} onChange={e => setStates(e.target.value)}>
-                        <option value=""></option>
+                        <option value="">Selecionar o Estado</option>
                         <option value="AC">Acre</option>
                         <option value="AL">Alagoas</option>
                         <option value="AP">Amapá</option>
@@ -112,11 +117,11 @@ function CreateAddress(props) {
                 </Modal.Body>
                 <Modal.Footer>
                     <Button className="btn-cancelar" onClick={e => setShow(false)}>
-                        Close
+                        Cancelar
                     </Button>
                     <Form onSubmit={handleSubmit}>
                         <Button className="btn-salvar" type="submit">
-                            Create
+                            Salvar
                         </Button>
                     </Form>
                 </Modal.Footer>

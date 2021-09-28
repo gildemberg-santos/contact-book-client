@@ -29,14 +29,14 @@ class Header extends Component {
           <Navbar.Brand>
             <FontAwesomeIcon className="phone" icon={faAddressBook} size="lg" />
             <Navbar.Text>
-              Directory
+              Agenda
             </Navbar.Text>
           </Navbar.Brand>
           <Navbar.Text className="form-inline">
             <Form>
               <Form.Group>
-                <Form.Control className="input-search" type="text" placeholder="Search" value={this.state.search} onChange={e => this.setState({ search: e.target.value })} />
-                <Button className="btn-search" onClick={() => this.searchContact()}>Search</Button>
+                <Form.Control className="input-search" type="text" placeholder="Pesquisar" value={this.state.search} onChange={e => this.setState({ search: e.target.value })} />
+                <Button className="btn-search" onClick={() => this.searchContact()}>Pesquisar</Button>
                 <Button className="btn-login">Login</Button>
                 <Login></Login>
               </Form.Group>

@@ -6,6 +6,7 @@ import { library } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlusCircle } from '@fortawesome/free-solid-svg-icons';
 import { cpfMask, dateMask } from './Mask';
+import { StatusCode, ValidarCompoDate } from './VerificarStatusCode';
 
 library.add(faPlusCircle)
 
@@ -17,23 +18,29 @@ function CreateContact(props) {
   const [show, setShow] = useState('');
 
   const handleSubmit = (async () => {
-    await fetch(`${process.env.REACT_APP_LINK_API}/contacts`,
-      {
-        method: 'POST',
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          contact: { name: name, cpf: cpf, email: email, dateOfBirth: dateOfBirth, admin_id: 1 }
-        })
-      })
-    setShow(false)
-    setName('')
-    setCpf('')
-    setEmail('')
-    setDateOfBirth('')
-    props.loadContacts();
+
+    if (ValidarCompoDate(dateOfBirth)) {
+      let response = await fetch(`${process.env.REACT_APP_LINK_API}/contacts`,
+        {
+          method: 'POST',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            contact: { name: name, cpf: cpf, email: email, dateOfBirth: dateOfBirth, admin_id: 1 }
+          })
+        });
+      if (StatusCode(response.status)) {
+        setShow(false);
+        setName('');
+        setCpf('');
+        setEmail('');
+        setDateOfBirth('');
+        props.loadContacts();
+      }
+    }
+
   });
 
   return (
@@ -44,21 +51,21 @@ function CreateContact(props) {
 
       <Modal show={show || false} onHide={e => setShow(false)}>
         <Modal.Header closeButton>
-          <Modal.Title>New Contact</Modal.Title>
+          <Modal.Title>Novo Contato</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Form.Control type="text" placeholder="Full Name" value={name || ''} onChange={e => setName(e.target.value)} />
+          <Form.Control type="text" placeholder="Nome Completo" value={name || ''} onChange={e => setName(e.target.value)} />
           <Form.Control type="text" placeholder="CPF ex:000.000.000-00" value={cpf || ''} onChange={e => setCpf(cpfMask(e.target.value))} />
           <Form.Control type="text" placeholder="E-mail ex:test@test.com" value={email || ''} onChange={e => setEmail(e.target.value)} />
-          <Form.Control type="text" placeholder="Date of Birth ex:00/00/0000" value={dateOfBirth || ''} onChange={e => setDateOfBirth(dateMask(e.target.value))} />
+          <Form.Control type="text" placeholder="Data de Nascimento ex:00/00/0000" value={dateOfBirth || ''} onChange={e => setDateOfBirth(dateMask(e.target.value))} />
         </Modal.Body>
         <Modal.Footer>
           <Button className="btn-cancelar" onClick={e => setShow(false)}>
-            Close
+            Cancelar
           </Button>
           <Form onSubmit={handleSubmit}>
             <Button className="btn-salvar" type="submit">
-              Create
+              Salvar
             </Button>
           </Form>
         </Modal.Footer>
