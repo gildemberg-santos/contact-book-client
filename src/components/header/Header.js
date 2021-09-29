@@ -18,12 +18,6 @@ class Header extends Component {
     }
   }
 
-
-  async login() {
-    const user = GetSession();
-    window.alert(user.token);
-  }
-
   async searchContact() {
     this.props.loadContacts(this.state.search);
   }
