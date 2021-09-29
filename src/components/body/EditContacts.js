@@ -40,7 +40,7 @@ function EditContact(props) {
 
   return (
     <div>
-      <a className="btn-icon" href="#">
+      <a className="btn-icon" href="?#">
         <FontAwesomeIcon onClick={e => setShow(true)} icon={faEdit} size="sm" />
       </a>
 

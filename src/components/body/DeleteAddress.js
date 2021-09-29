@@ -21,7 +21,7 @@ function DeleteAddress(props) {
 
     return (
         <div>
-            <a className="btn-icon" href="#" onClick={deleteAddress}>
+            <a className="btn-icon" href="?#" onClick={deleteAddress}>
                 <FontAwesomeIcon icon={faTrashAlt} size="sm" />
             </a>
         </div>

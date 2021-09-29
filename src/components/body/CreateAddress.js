@@ -68,7 +68,7 @@ function CreateAddress(props) {
 
     return (
         <div>
-            <a className="btn-icon" href="#">
+            <a className="btn-icon" href="?#">
                 <FontAwesomeIcon onClick={e => setShow(true)} icon={faPlusCircle} size="sm" />
             </a>
             <Modal show={show || false} onHide={e => setShow(false)}>
