@@ -45,9 +45,9 @@ function CreateContact(props) {
 
   return (
     <div>
-      <a className="btn-icon" href="?#">
+      <span className="btn-icon btn">
         <FontAwesomeIcon onClick={e => setShow(true)} icon={faPlusCircle} size="lg" />
-      </a>
+      </span>
 
       <Modal show={show || false} onHide={e => setShow(false)}>
         <Modal.Header closeButton>

@@ -75,9 +75,9 @@ class ListContact extends Component {
                         <EditContact loadContacts={this.props.loadContacts} contact={contact} />
                       </td>
                       <td>
-                        <a className="btn-icon" href="?#" onClick={() => this.deleteAddress(contact)}>
+                        <span className="btn-icon btn" onClick={() => this.deleteAddress(contact)}>
                           <FontAwesomeIcon icon={faTrashAlt} size="sm" />
-                        </a>
+                        </span>
                       </td>
                     </tr>;
                   }) || <div></div>}

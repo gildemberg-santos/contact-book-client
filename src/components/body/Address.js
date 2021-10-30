@@ -50,9 +50,9 @@ class Address extends Component {
     render() {
         return (
             <div>
-                <a onClick={e => this.setState({ show: true })} className="btn-icon" href="?#">
+                <span onClick={e => this.setState({ show: true })} className="btn-icon btn">
                     <FontAwesomeIcon icon={faGlobeAmericas} size="sm" />
-                </a>
+                </span>
 
 
                 <Modal show={this.state.show || false} onHide={e => this.setState({ show: false })}>
