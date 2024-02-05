@@ -23,7 +23,7 @@
     "tsutils": "^3.21.0",
     "typescript": "^4.4.3",
     "web-vitals": "^1.0.1",
-    "yarn": "^1.22.11"
+    "yarn": "^1.22.13"
   },
   "scripts": {
     "start": "react-scripts start",
